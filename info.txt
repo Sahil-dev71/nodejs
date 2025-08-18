@@ -1,0 +1,1 @@
+In terminal you could use "code ." command to open any folder in vs-code
