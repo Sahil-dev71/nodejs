@@ -1,0 +1,13 @@
+const chatGroups=require("./classDriver");
+const group1=new chatGroups();
+group1.join("sahil");
+group1.join("deepu");
+group1.join("akash");
+group1.join("jeetu");
+group1.allUsers("sahil");
+console.log("group 2 of the chats are on the rock");
+const group2=new chatGroups();
+group2.join("sameer");
+group2.join("ashish");
+group2.join("vivek");
+group2.allUsers("vivek");
