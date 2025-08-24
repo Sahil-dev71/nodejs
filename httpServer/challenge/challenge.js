@@ -9,32 +9,34 @@ const server = http.createServer((req, res) => {
   let writeInDatabase=false;
   let body = "";
   req.on("data", (chunk) => {
-    body += chunk.toString();
-  });
-  req.on("end",()=>{
-    // console.log(typeof body);
-    // console.log(body);
-    if(writeInDatabase){bodyCheck(body)}
-    writeInDatabase=false;
-  })
-  // --------------- File System --------------------
-  
-  function write(data) {
-  db.appendFileSync("database.txt", data);
-  return "work is done";
-}
-function bodyCheck(body) {
-  console.log(typeof body);
-  console.log(body);
-  if(body){
-    write(body);
-  }else{
-    return "bruhh body is empty ";
-  }
-}
-  
-  let method = req.method;
-  let path = req.url;
+      body += chunk.toString();
+    });
+    req.on("end",()=>{
+        // console.log(typeof body);
+        // console.log(body);
+        if(writeInDatabase){bodyCheck(body)}
+        writeInDatabase=false;
+    })
+    // --------------- File System --------------------
+    
+    function write(data) {
+        db.appendFileSync("database.txt", `${data}\n`);
+        return "work is done";
+    }
+    function bodyCheck(body) {
+        console.log(typeof body);
+        console.log(body);
+        if(body){
+            write(body);
+        }else{
+            return "bruhh body is empty ";
+        }
+    }
+    
+    let method = req.method;
+    let path = req.url;
+    const log=`method : "${method}" path : "${path}" time : "${Date.now()}"\n`;
+    db.appendFileSync("log.txt",log)
   switch (method) {
     case "GET":
       switch (path) {
