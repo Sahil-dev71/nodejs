@@ -3,7 +3,15 @@ const server2 = http.createServer((req, res) => {
 //   console.log(req.headers);
   // res.writeHead(200);
   console.log(req.method);
-  
+  // console.log(req);
+  let body="";
+  req.on("data",(chunk)=>{
+    body +=chunk.toString();
+  })
+  req.on("end",()=>{
+    console.log(`${body}}`);
+    
+  })
   switch (req.url) {
     case "/":
       res.writeHead(200);
