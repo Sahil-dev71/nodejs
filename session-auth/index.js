@@ -9,6 +9,7 @@ import { usersData } from "./middlewares/app.middleware.js";
 const app=express();
 const Port=process.env.Port??8000;
 app.use(express.json());
+
 app.get("/",(req,res)=>{
     res.json({ 
         message:"user is on home page"
@@ -37,7 +38,7 @@ app.get("/",(req,res)=>{
 app.use(usersData) // middleware with external function call
 app.use("/user",userRouter);
 app.use("/admin",adminRouter);
+
 app.listen(Port,()=>{
-    console.log(`server is ON and running on PORT : ${Port}`);
-    
+    console.log(`server is ON and running on PORT : ${Port}`); 
 })
